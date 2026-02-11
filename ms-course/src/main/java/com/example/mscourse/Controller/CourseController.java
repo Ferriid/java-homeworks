@@ -31,11 +31,11 @@ public class CourseController {
     public void addCourse(@RequestBody CourseRequestDto courseRequestDto) {
         courseService.addCourse(courseRequestDto);
     }
-    @PostMapping("/addstudent")
-    public void addStudentToTheCourse (@RequestBody StudentRequestDto studentRequestDto){
-
-        studentService.addStudentToTheCourse(studentRequestDto);
-    }
+//    @PostMapping("/addstudent")
+//    public void addStudentToTheCourse (@RequestBody StudentRequestDto studentRequestDto){
+//
+//        studentService.addStudentToTheCourse(studentRequestDto);
+//    }
 
 
 }
