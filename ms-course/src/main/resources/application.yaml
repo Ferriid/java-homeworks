@@ -1,0 +1,33 @@
+spring:
+  rabbitmq:
+    host: rabbitmq
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-retries: 3
+        missing-queues-fatal: false
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/mydatabase
+    username: myuser
+    password: secret
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  data:
+    redis:
+      host: redis
+      port: 6379
+
+server:
+  port: 7575

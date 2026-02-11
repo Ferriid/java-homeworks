@@ -1,0 +1,30 @@
+package com.example.mscourse.Redis;
+
+
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
+
+@Service
+public class RedisService {
+
+    private final RedisTemplate redisTemplate;
+
+    public RedisService(RedisTemplate<String, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
+    public void setValue (String key, Object value) {
+        long ttl = 1000;
+        redisTemplate.opsForValue().set(key,value,ttl, TimeUnit.SECONDS);
+    }
+
+    public Object getValue (String key) {
+        return redisTemplate.opsForValue().get(key);
+    }
+
+    public void deleteKey (String key) {
+        redisTemplate.delete(key);
+    }
+}

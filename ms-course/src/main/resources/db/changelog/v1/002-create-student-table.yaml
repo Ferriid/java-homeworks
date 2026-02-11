@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-student-table
+      author: Farid Calalov
+      changes:
+        - createTable:
+            tableName: student
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: student_id
+                  type: varchar(7)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: course
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: age
+                  type: int
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: payment_status
+                  type: varchar(50)
+                  defaultValue: UNPAID
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: email
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: education_started
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false

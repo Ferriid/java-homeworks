@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create course table
+      author: Farid Calalov
+      changes:
+        - createTable:
+            tableName: course
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+              - column:
+                  name: teacher_name
+                  type: varchar(50)
+              - column:
+                  name: enrollment
+                  type: int
+              - column:
+                  name: course_price
+                  type: double
+              - column:
+                  name: teacher_salary
+                  type: double
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: created date of the column
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: updated date of the column
+                  constraints:
+                    nullable: false
