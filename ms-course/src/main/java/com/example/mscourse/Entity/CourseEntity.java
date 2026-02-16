@@ -18,6 +18,9 @@ public class CourseEntity {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "course_id", nullable = false)
+    private String courseId;
+
     @Column(name = "teacher_name")
     private String teacherName;
 

@@ -16,7 +16,9 @@ import java.time.LocalDateTime;
 public class StudentResponseDto {
     private String studentId;
     private String name;
+    private String courseId;
     private String course;
+    private String teacherName;
     private Integer age;
     private PaymentStatus paymentStatus;
     private String email;

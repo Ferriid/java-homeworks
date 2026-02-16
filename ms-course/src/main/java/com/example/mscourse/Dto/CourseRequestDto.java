@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseRequestDto {
-
+    private String courseId;
     private String name;
     private String teacherName;
     private Integer enrollment;

@@ -6,6 +6,7 @@ import com.example.mscourse.Dto.CourseResponseDto;
 import com.example.mscourse.Dto.StudentRequestDto;
 import com.example.mscourse.Service.CourseService;
 import com.example.mscourse.Service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +32,17 @@ public class CourseController {
     public void addCourse(@RequestBody CourseRequestDto courseRequestDto) {
         courseService.addCourse(courseRequestDto);
     }
-//    @PostMapping("/addstudent")
-//    public void addStudentToTheCourse (@RequestBody StudentRequestDto studentRequestDto){
-//
-//        studentService.addStudentToTheCourse(studentRequestDto);
-//    }
+
+    @PostMapping ("/addstudent")
+    public void addStudent(@Valid @RequestBody StudentRequestDto studentRequestDto) {
+        studentService.addStudentToTheCourse(studentRequestDto);
+    }
+
+    @PutMapping ("/updatecourse")
+    public void updateCourse(@RequestBody CourseRequestDto courseRequestDto) {
+        courseService.updateCourse(courseRequestDto, courseRequestDto.getCourseId());
+
+    }
 
 
 }

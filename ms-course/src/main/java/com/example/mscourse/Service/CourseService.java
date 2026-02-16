@@ -11,7 +11,10 @@ import com.example.mscourse.Repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +25,7 @@ public class CourseService {
         return courseRepository.findAll()
                 .stream()
                 .map(c -> new CourseResponseDto(
+                        c.getCourseId(),
                         c.getName(),
                         c.getTeacherName(),
                         c.getEnrollment(),
@@ -41,19 +45,25 @@ return MappertCourseEntityToResponse.mapEntityToResponse(courseExistence(name));
     }
 
     public void addCourse (CourseRequestDto courseRequestDto) {
-        courseRepository.save(MapperDtoToCourseEntity.courseEntity(courseRequestDto));
+        CourseEntity courseEntity = new CourseEntity();
+        courseEntity.setCourseId(UUID.randomUUID().toString().replace("-", "").substring(0, 5).toUpperCase(Locale.ROOT));
+        courseEntity.setCreatedAt(LocalDateTime.now());
+        courseEntity.setUpdatedAt(LocalDateTime.now());
+        courseRepository.save(MapperDtoToCourseEntity.mapDtoToCourseEntity(courseRequestDto, courseEntity));
+
     }
 
-    public void updateCourse (CourseRequestDto courseRequestDto) {}
-
-    public void deleteCourse (String name) {
-
+    public void updateCourse (CourseRequestDto courseRequestDto, String id) {
+        var course = courseRepository.findCourseEntityByCourseId(id).orElseThrow(()-> new CourseNotFoundException("Course not found"));
+        courseRepository.save(MapperDtoToCourseEntity.mapDtoToCourseEntity(courseRequestDto, course));
+        course.setUpdatedAt(LocalDateTime.now());
+        courseRepository.save(course);
     }
+
+    public void deleteCourse (String name) {}
     public CourseEntity courseExistence (String name) {
         return courseRepository.findCourseEntityByName(name).orElseThrow(() ->
              new CourseNotFoundException("Course not found.."));
         }
 
-
-
-}
+    }

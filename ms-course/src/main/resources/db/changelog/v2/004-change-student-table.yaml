@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-courseIdandTeacherName-column
+      author: Farid Calalov
+      changes:
+        - addColumn:
+            tableName: student
+            columns:
+              - column:
+                  name: course_id
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: teacher_name
+                  type: varchar(50)
